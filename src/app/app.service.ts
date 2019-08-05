@@ -17,8 +17,8 @@ export class AppService {
     return this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler));
   }
 
-  postExpenses(expense): Observable<Expense[]> {
-    return this.expenses = this.http.post<any>(this.ROOT_URL + '/expense', { expense }).pipe(catchError(this.errorHandler));
+  postExpenses(expense: Expense): Observable<void> {
+    return this.expenses = this.http.post<any>(this.ROOT_URL + '/expense', expense).pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {

@@ -34,6 +34,6 @@ export class AppComponent implements OnInit {
       price: value.price
     };
     this.expenseArray.push(tempExpense);
-    console.log(this.expenseArray);
+    this.appService.postExpenses(tempExpense).subscribe();
   }
 }
