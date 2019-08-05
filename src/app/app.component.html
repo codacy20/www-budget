@@ -11,7 +11,7 @@
     <p>here: {{expense.value}}</p>
     <div class="data">
       <ul class="list-instyled">
-        <li *ngFor="let expense of expenseArray">{{expense}}<i (click)="deleteItem(expense)"
+        <li *ngFor="let expense of expenseArray">{{expense.name}}<i (click)="deleteItem(expense)"
             class="material-icons">delete</i></li>
       </ul>
     </div>
