@@ -1,19 +1,30 @@
 <div class="container">
   <form #expenseForm="ngForm" (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()">
     <div class="form-group">
-      <h1 class="text-center text-primary">Expense App</h1>
-      <div class="input-group-prepend">
-        <input type="text" #expense class="form-control" placeholder="Add Expense" name="expense" autocomplete="off"
-          ngModel>
-        <span class="input-group-text" (click)="addExpense(expense.value)"><i class="material-icons">add</i></span>
-      </div>
+      <label for="itemNamelbl">Item's Name</label>
+      <input #itemName type="text" class="form-control" name="itemName" id="itemName" aria-describedby="itemName"
+        placeholder="Enter item's name" autocomplete="off" ngModel>
     </div>
-    <p>here: {{expense.value}}</p>
-    <div class="data">
+    <div class="form-group">
+      <label for="itemPricelbl">Price</label>
+      <input #price type="number" class="form-control" name="price" id="price" placeholder="Price" autocomplete="off"
+        ngModel>
+    </div>
+    <div class="form-group">
+      <label for="itemLocationlbl">Location</label>
+      <input #location type="text" class="form-control" name="location" id="location" placeholder="Location"
+        autocomplete="off" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="itemDatelbl">Date</label>
+      <input #date type="date" class="form-control" name="date" id="date" placeholder="Date" autocomplete="off" ngModel>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+  <div class="data">
       <ul class="list-instyled">
-        <li *ngFor="let expense of expenseArray">{{expense.name}}<i (click)="deleteItem(expense)"
+        <li *ngFor="let expense of expenseArray">{{expense.name}} for €{{expense.price}}<i (click)="deleteItem(expense)"
             class="material-icons">delete</i></li>
       </ul>
     </div>
-  </form>
 </div>

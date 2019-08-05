@@ -24,11 +24,11 @@ form input[type=text]::placeholder {
     color: #666;
 }
 
-form .data {
+.data {
     margin-top: 1em;
 }
 
-form .data li {
+.data li {
     background: #fff;
     border-left: 4px solid #F97300;
     padding: 1em;
@@ -37,7 +37,7 @@ form .data li {
     font-family: "Roboto";
 }
 
-form .data li i {
+.data li i {
     float: right;
     color: #888;
     cursor: pointer;

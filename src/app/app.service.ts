@@ -16,6 +16,11 @@ export class AppService {
   getExpenses(): Observable<Expense[]> {
     return this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler));
   }
+
+  postExpenses(expense): Observable<Expense[]> {
+    return this.expenses = this.http.post<any>(this.ROOT_URL + '/expense', { expense }).pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || 'Server Error! Sorry');
   }
