@@ -10,7 +10,7 @@ import { Expense } from './Models/expense.interface';
 export class AppComponent implements OnInit {
 
   title = 'www-budget';
-  expenseArray = [];
+  expenseArray: Expense[] = [];
 
   constructor(private appService: AppService) { }
 
@@ -18,10 +18,11 @@ export class AppComponent implements OnInit {
     this.appService.getExpenses().subscribe(data => this.expenseArray = data);
   }
 
-  deleteItem(value) {
+  deleteItem(value: Expense) {
     for (let index = 0; index < this.expenseArray.length; index++) {
-      if (value === this.expenseArray[index]) {
+      if (value.name === this.expenseArray[index].name && value.date === this.expenseArray[index].date) {
         this.expenseArray.splice(index, 1);
+        this.appService.deleteExpense(value.name).subscribe();
       }
     }
   }

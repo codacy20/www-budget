@@ -21,6 +21,10 @@ export class AppService {
     return this.expenses = this.http.post<any>(this.ROOT_URL + '/expense', expense).pipe(catchError(this.errorHandler));
   }
 
+  deleteExpense(name: string) {
+    return this.expenses = this.http.delete<any>(`${this.ROOT_URL}/expense/${name}`).pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || 'Server Error! Sorry');
   }
