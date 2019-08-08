@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Expense } from './Models/expense.interface';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Expense } from './Models/expense.interface';
 })
 export class AppComponent implements OnInit {
 
+  startDate = new Date(1990, 0, 1);
   title = 'www-budget';
   expenseArray: Expense[] = [];
 
@@ -39,5 +41,10 @@ export class AppComponent implements OnInit {
       tempExpense._id = result._id;
       this.expenseArray.push(tempExpense);
     });
+  }
+
+  chosenMonthHandler(datepicker: MatDatepicker<any>) {
+    this.startDate = new Date(1990, 0, 1);
+    datepicker.close();
   }
 }
