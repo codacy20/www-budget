@@ -1,13 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Expense } from './Models/expense.interface';
-import { MatDatepicker } from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
+
+export const MY_FORMATS = {
+  parse: { dateInput: { month: 'short', year: 'numeric', day: 'numeric' } },
+  display: {
+    dateInput: { month: 'short', year: 'numeric' },
+    monthYearLabel: { year: 'numeric' }
+  }
+};
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ]
 })
 export class AppComponent implements OnInit {
 
@@ -44,9 +56,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  chosenMonthHandler(value: Date, datepicker: MatDatepicker<any>) {
-    this.startDate.setValue(new Date(1990, 0, 2));
-    console.log(value);
+  chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
+    this.startDate.setValue(value);
     datepicker.close();
   }
 }

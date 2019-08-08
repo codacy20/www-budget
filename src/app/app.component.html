@@ -25,7 +25,7 @@
   <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="Month and Year" [formControl]="startDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker startView="year" [startAt]="startDate" (monthSelected)="chosenMonthHandler(startDate.value,picker)">
+    <mat-datepicker #picker startView="year" [startAt]="startDate" (monthSelected)="chosenMonthHandler($event,picker)">
     </mat-datepicker>
   </mat-form-field>
   <div class="data">
