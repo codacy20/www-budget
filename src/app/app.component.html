@@ -1,5 +1,6 @@
 <div class="container">
   <form #expenseForm="ngForm" (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()">
+    <h1>Expenses</h1>
     <div class="form-group">
       <label for="itemNamelbl">Item's Name</label>
       <input #itemName type="text" class="form-control" name="itemName" id="itemName" aria-describedby="itemName"
@@ -22,9 +23,9 @@
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
   <div class="data">
-      <ul class="list-instyled">
-        <li *ngFor="let expense of expenseArray">{{expense.name}} for €{{expense.price}}<i (click)="deleteItem(expense)"
-            class="material-icons">delete</i></li>
-      </ul>
-    </div>
+    <ul class="list-instyled">
+      <li *ngFor="let expense of expenseArray"> {{expense.date | date}} >> {{expense.name}} >> €{{expense.price}} @
+        {{expense.location}}<i (click)="deleteItem(expense)" class="material-icons">delete</i></li>
+    </ul>
+  </div>
 </div>
