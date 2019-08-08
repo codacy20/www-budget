@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Expense } from './Models/expense.interface';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 })
 export class AppComponent implements OnInit {
 
-  startDate = new Date(1990, 0, 1);
+  startDate = new FormControl(new Date());
   title = 'www-budget';
   expenseArray: Expense[] = [];
 
@@ -43,8 +44,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  chosenMonthHandler(datepicker: MatDatepicker<any>) {
-    this.startDate = new Date(1990, 0, 1);
+  chosenMonthHandler(value: Date, datepicker: MatDatepicker<any>) {
+    this.startDate.setValue(new Date(1990, 0, 2));
+    console.log(value);
     datepicker.close();
   }
 }
