@@ -58,6 +58,8 @@ export class AppComponent implements OnInit {
 
   chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
     this.startDate.setValue(value);
+    const date = new Date(value.toString());
+    this.appService.getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`).subscribe(data => this.expenseArray = data);
     datepicker.close();
   }
 }

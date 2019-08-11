@@ -17,6 +17,10 @@ export class AppService {
     return this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler));
   }
 
+  getExpensesByDate(date: string) {
+    return this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense/' + date).pipe(catchError(this.errorHandler));
+  }
+
   postExpenses(expense: Expense): Observable<Expense> {
     return this.expenses = this.http.post<any>(this.ROOT_URL + '/expense', {
       name: expense.name,
