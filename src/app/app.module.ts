@@ -7,6 +7,8 @@ import { MatNativeDateModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 const modules = [
   BrowserModule,
@@ -17,7 +19,9 @@ const modules = [
   MatNativeDateModule,
   MatInputModule,
   BrowserAnimationsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatChipsModule,
+  MatIconModule
 ];
 
 @NgModule({
