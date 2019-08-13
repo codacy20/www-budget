@@ -31,6 +31,7 @@
         (monthSelected)="chosenMonthHandler($event,picker)">
       </mat-datepicker>
     </mat-form-field>
+    <button type="button" class="btn btn-danger floatRight" (click)="clearFilters()">Clear Filter</button>
     <ul class="list-instyled">
       <li *ngFor="let expense of expenseArray"> {{expense.date | date}} >> {{expense.name}} >> €{{expense.price}} @
         {{expense.location}}<i (click)="deleteItem(expense)" class="material-icons">delete</i></li>

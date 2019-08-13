@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.appService.getExpenses().subscribe(data => this.expenseArray = data);
+    this.clearFilters();
   }
 
   deleteItem(value: Expense) {
@@ -61,5 +61,9 @@ export class AppComponent implements OnInit {
     const date = new Date(value.toString());
     this.appService.getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`).subscribe(data => this.expenseArray = data);
     datepicker.close();
+  }
+
+  clearFilters() {
+    this.appService.getExpenses().subscribe(data => this.expenseArray = data);
   }
 }

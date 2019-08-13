@@ -18,6 +18,10 @@ form h1 {
     color: #F97300;
 }
 
+.floatRight{
+    float: right;
+}
+
 form input[type=text]::placeholder {
     font-family: "Roboto";
     color: #666;
