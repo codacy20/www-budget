@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   startDate = new FormControl(new Date());
   title = 'www-budget';
+  total = 0;
   expenseArray: Expense[] = [];
 
   constructor(private appService: AppService) { }
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
         this.appService.deleteExpense(value._id).subscribe();
       }
     }
+    this.getTotal();
   }
 
   expenseSubmit(value: any) {
@@ -53,17 +55,26 @@ export class AppComponent implements OnInit {
     this.appService.postExpenses(tempExpense).subscribe(result => {
       tempExpense._id = result._id;
       this.expenseArray.push(tempExpense);
+      this.getTotal();
     });
   }
 
   chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
-    this.appService.getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`).subscribe(data => this.expenseArray = data);
+    this.appService.getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
+      .subscribe(data => { this.expenseArray = data; this.getTotal(); });
     datepicker.close();
   }
 
   clearFilters() {
-    this.appService.getExpenses().subscribe(data => this.expenseArray = data);
+    this.appService.getExpenses().subscribe(data => { this.expenseArray = data; this.getTotal(); });
+  }
+
+  getTotal() {
+    this.total = 0;
+    for (let index of this.expenseArray) {
+      this.total += index.price;
+    }
   }
 }

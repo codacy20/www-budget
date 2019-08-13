@@ -18,7 +18,7 @@ form h1 {
     color: #F97300;
 }
 
-.floatRight{
+.floatRight {
     float: right;
 }
 
@@ -35,13 +35,32 @@ form input[type=text]::placeholder {
     padding: 2em 3em;
 }
 
-.data li {
+/* .data li {
     background: #fff;
     border-left: 4px solid #F97300;
     padding: 1em;
     margin: 1em auto;
     color: #666;
     font-family: "Roboto";
+} */
+
+.list-group-horizontal {
+    margin-top: 1%;
+    justify-content: center;
+}
+
+.list-group-item {
+    width: 20%;
+    font-family: "Roboto";
+    overflow: hidden;
+}
+
+.list-group-horizontal .list-group-item:last-child {
+    width: auto;
+}
+
+.list-group-horizontal .list-group-item:first-child {
+    border-left: 4px solid #F97300;
 }
 
 .data li i {
