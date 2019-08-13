@@ -1,44 +1,52 @@
 <div class="container">
-  <form #expenseForm="ngForm" (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()">
-    <h1>Expenses</h1>
-    <div class="form-group">
-      <label for="itemNamelbl">Item's Name</label>
-      <input #itemName type="text" class="form-control" name="itemName" id="itemName" aria-describedby="itemName"
-        placeholder="Enter item's name" autocomplete="off" ngModel>
-    </div>
-    <div class="form-group">
-      <label for="itemPricelbl">Price</label>
-      <input #price type="number" class="form-control" name="price" id="price" placeholder="Price" autocomplete="off"
-        ngModel>
-    </div>
-    <div class="form-group">
-      <label for="itemLocationlbl">Location</label>
-      <input #location type="text" class="form-control" name="location" id="location" placeholder="Location"
-        autocomplete="off" ngModel>
-    </div>
-    <div class="form-group">
-      <label for="itemDatelbl">Date</label>
-      <input #date type="date" class="form-control" name="date" id="date" min="2018-01-01" max="2020-12-31"
-        placeholder="Date" autocomplete="off" ngModel>
-    </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-  </form>
-  <div class="data">
-    <p>Total Spent this month: <b>€{{total}}</b></p>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Month and Year" [formControl]="startDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker startView="year" [startAt]="startDate"
-        (monthSelected)="chosenMonthHandler($event,picker)">
-      </mat-datepicker>
-    </mat-form-field>
-    <button type="button" class="btn btn-danger floatRight" (click)="clearFilters()">Clear Filter</button>
-    <ul class="list-group list-group-horizontal" *ngFor="let expense of expenseArray">
-      <li class="list-group-item">€{{expense.price}}</li>
-      <li class="list-group-item">{{expense.name}}</li>
-      <li class="list-group-item">{{expense.location}}</li>
-      <li class="list-group-item">{{expense.date | date}}</li>
-      <li class="list-group-item"><i (click)="deleteItem(expense)" class="material-icons">delete</i></li>
-    </ul>
-  </div>
+  <mat-tab-group>
+    <mat-tab label="Expenses">
+      <form #expenseForm="ngForm" (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()">
+        <h1>Expenses</h1>
+        <div class="form-group">
+          <label for="itemNamelbl">Item's Name</label>
+          <input #itemName type="text" class="form-control" name="itemName" id="itemName" aria-describedby="itemName"
+            placeholder="Enter item's name" autocomplete="off" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="itemPricelbl">Price</label>
+          <input #price type="number" class="form-control" name="price" id="price" placeholder="Price"
+            autocomplete="off" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="itemLocationlbl">Location</label>
+          <input #location type="text" class="form-control" name="location" id="location" placeholder="Location"
+            autocomplete="off" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="itemDatelbl">Date</label>
+          <input #date type="date" class="form-control" name="date" id="date" min="2018-01-01" max="2020-12-31"
+            placeholder="Date" autocomplete="off" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+      <div class="data">
+        <p>Total Spent this month: <b>€{{total}}</b></p>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Month and Year" [formControl]="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year" [startAt]="startDate"
+            (monthSelected)="chosenMonthHandler($event,picker)">
+          </mat-datepicker>
+        </mat-form-field>
+        <button type="button" class="btn btn-danger floatRight" (click)="clearFilters()">Clear Filter</button>
+        <ul class="list-group list-group-horizontal" *ngFor="let expense of expenseArray">
+          <li class="list-group-item">€{{expense.price}}</li>
+          <li class="list-group-item">{{expense.name}}</li>
+          <li class="list-group-item">{{expense.location}}</li>
+          <li class="list-group-item">{{expense.date | date}}</li>
+          <li class="list-group-item"><i (click)="deleteItem(expense)" class="material-icons">delete</i></li>
+        </ul>
+      </div>
+    </mat-tab>
+    <mat-tab label="Timesheet">
+      <h1>Some more tab content</h1>
+      <p>...</p>
+    </mat-tab>
+  </mat-tab-group>
 </div>
