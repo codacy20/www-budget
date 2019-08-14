@@ -10,6 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 const modules = [
   BrowserModule,
@@ -23,12 +25,14 @@ const modules = [
   ReactiveFormsModule,
   MatChipsModule,
   MatIconModule,
-  MatTabsModule
+  MatTabsModule,
+  ChartsModule
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChartComponent
   ],
   imports: [
     modules
