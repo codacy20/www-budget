@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Expense } from '../Models/expense.interface';
@@ -8,9 +8,18 @@ import { Expense } from '../Models/expense.interface';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnChanges {
 
-  @Input() masterArray: Expense[];
+  // tslint:disable-next-line: variable-name
+  private _masterArray: Expense[];
+
+  get masterArray() {
+    return this._masterArray;
+  }
+  @Input()
+  set masterArray(val: any) {
+    this._masterArray = val;
+  }
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -42,8 +51,22 @@ export class ChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.dataSetter();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const currentItem: SimpleChange = changes.masterArray;
+    if (currentItem.currentValue) {
+      const currentValue: Expense[] = currentItem.currentValue;
+      this._masterArray = currentValue;
+    }
+    this.dataSetter();
+  }
+
+  dataSetter() {
+    let data = [];
+    this.barChartData = [];
     if (this.masterArray.length > 0) {
-      let data = [];
       this.masterArray.forEach((el: Expense) => {
         data.push(el.price);
       });
@@ -53,5 +76,4 @@ export class ChartComponent implements OnInit {
       });
     }
   }
-
 }
