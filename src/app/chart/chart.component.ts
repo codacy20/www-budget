@@ -25,9 +25,15 @@ export class ChartComponent implements OnInit, OnChanges {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      xAxes: [{}], yAxes: [{}]
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
     },
   };
+
   public chartLabels: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public barChartType: ChartType = 'bar';
