@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Expense } from '../Models/expense.interface';
 
 @Component({
   selector: 'app-chart',
@@ -8,6 +9,8 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+
+  @Input() masterArray: Expense[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -21,9 +24,7 @@ export class ChartComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40, 100], label: 'Series A' }
-  ];
+  public barChartData: ChartDataSets[] = [];
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -40,6 +41,17 @@ export class ChartComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.masterArray.length > 0) {
+      let data = [];
+      this.masterArray.forEach((el: Expense) => {
+        data.push(el.price);
+      });
+      this.barChartData.push({
+        data,
+        label: 'default'
+      });
+    }
+  }
 
 }

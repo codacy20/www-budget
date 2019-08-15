@@ -43,8 +43,8 @@
           <li class="list-group-item"><i (click)="deleteItem(expense)" class="material-icons">delete</i></li>
         </ul>
       </div>
-      <div class="data">
-        <app-chart></app-chart>
+      <div class="data" *ngIf="expenseArray.length > 0">
+        <app-chart [masterArray]="expenseArray"></app-chart>
       </div>
     </mat-tab>
     <mat-tab label="Timesheet">
