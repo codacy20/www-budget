@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
 
   getTotal() {
     this.total = 0;
+    // tslint:disable-next-line: prefer-const
     for (let index of this.expenseArray) {
       this.total += index.price;
     }

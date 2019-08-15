@@ -70,6 +70,7 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   dataSetter() {
+    // tslint:disable-next-line: prefer-const
     let data = [];
     this.barChartData = [];
     if (this.masterArray.length > 0) {
@@ -83,3 +84,39 @@ export class ChartComponent implements OnInit, OnChanges {
     }
   }
 }
+
+// dataSetter() {
+//   let data = [];
+//   this.barChartData = [];
+//   if (this.masterArray.length > 0) {
+//     this.masterArray.forEach((el: Expense) => {
+//       const date = new Date(el.date.toString());
+//       const obj = {
+//         data: [el.price],
+//         label: date.getMonth()
+//       };
+//       if (data[date.getMonth()]) {
+//         if (data[date.getMonth()].data) {
+//           data[date.getMonth()].data.push(el.price);
+//         }
+//       } else {
+//         data[date.getMonth()] = obj;
+//       }
+//     });
+//     this.barChartData = data;
+//     for (let index = 0; index < 12; index++) {
+//       if (this.barChartData[index]) {
+//       }
+//       else {
+//         this.barChartData[index] = {
+//           data: []
+//         };
+//       }
+//     }
+//     console.log(this.barChartData);
+//     // this.barChartData.push({
+//     //   data,
+//     //   label: 'default'
+//     // });
+//   }
+// }
