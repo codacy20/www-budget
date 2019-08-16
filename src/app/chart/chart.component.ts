@@ -23,14 +23,20 @@ export class ChartComponent implements OnInit, OnChanges {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
+    legend: {
+      position: 'right'
+    },
     scales: {
+      xAxes: [{
+        stacked: true
+      }],
       yAxes: [{
+        stacked: true,
         display: true,
         ticks: {
           beginAtZero: true,
         }
-      }]
+      }],
     },
   };
 
@@ -69,54 +75,27 @@ export class ChartComponent implements OnInit, OnChanges {
     this.dataSetter();
   }
 
+
   dataSetter() {
     // tslint:disable-next-line: prefer-const
     let data = [];
     this.barChartData = [];
-    if (this.masterArray.length > 0) {
-      this.masterArray.forEach((el: Expense) => {
-        data.push(el.price);
-      });
-      this.barChartData.push({
-        data,
-        label: 'default'
-      });
-    }
+    this.masterArray.forEach((el: Expense) => {
+      const date = new Date(el.date.toString());
+      const obj = {
+        data: [el.price],
+        data2: el.name,
+        label: el.name,
+        row: date.getMonth()
+      };
+      data.push(obj);
+    });
+
+    data.forEach((element) => {
+      for (let index = 0; index < element.row; index++) {
+        element.data.splice(0, 0, 0);
+      }
+    });
+    this.barChartData = data;
   }
 }
-
-// dataSetter() {
-//   let data = [];
-//   this.barChartData = [];
-//   if (this.masterArray.length > 0) {
-//     this.masterArray.forEach((el: Expense) => {
-//       const date = new Date(el.date.toString());
-//       const obj = {
-//         data: [el.price],
-//         label: date.getMonth()
-//       };
-//       if (data[date.getMonth()]) {
-//         if (data[date.getMonth()].data) {
-//           data[date.getMonth()].data.push(el.price);
-//         }
-//       } else {
-//         data[date.getMonth()] = obj;
-//       }
-//     });
-//     this.barChartData = data;
-//     for (let index = 0; index < 12; index++) {
-//       if (this.barChartData[index]) {
-//       }
-//       else {
-//         this.barChartData[index] = {
-//           data: []
-//         };
-//       }
-//     }
-//     console.log(this.barChartData);
-//     // this.barChartData.push({
-//     //   data,
-//     //   label: 'default'
-//     // });
-//   }
-// }
