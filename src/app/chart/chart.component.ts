@@ -24,7 +24,7 @@ export class ChartComponent implements OnInit, OnChanges {
   public barChartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: 'right'
+      position: 'bottom'
     },
     scales: {
       xAxes: [{

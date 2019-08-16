@@ -23,6 +23,13 @@
           <input #date type="date" class="form-control" name="date" id="date" min="2018-01-01" max="2020-12-31"
             placeholder="Date" autocomplete="off" ngModel>
         </div>
+        <div class="form-group">
+          <label for="itemNamelbl">Category</label>
+          <label for="sel1">Select list:</label>
+          <select class="form-control" id="sel1">
+            <option *ngFor="let category of categories">{{category}}</option>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Add</button>
       </form>
       <div class="data">

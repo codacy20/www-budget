@@ -27,6 +27,8 @@ export class AppComponent implements OnInit {
   title = 'www-budget';
   total = 0;
   expenseArray: Expense[] = [];
+  categories = ['Business travel', 'Public relations, promotion and advertising', 'Office supplies',
+    'Insurance', 'Education', 'Rent, phones, utilities'];
 
   constructor(private appService: AppService) { }
 
