@@ -26,7 +26,8 @@ export class AppService {
       name: expense.name,
       price: expense.price,
       location: expense.location,
-      date: expense.date
+      date: expense.date,
+      category: expense.category
     }).pipe(catchError(this.errorHandler));
   }
 

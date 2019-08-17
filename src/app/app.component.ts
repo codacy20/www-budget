@@ -52,7 +52,8 @@ export class AppComponent implements OnInit {
       name: value.itemName,
       date: value.date,
       location: value.location,
-      price: value.price
+      price: value.price,
+      category: value.category
     };
     this.appService.postExpenses(tempExpense).subscribe(result => {
       tempExpense._id = result._id;

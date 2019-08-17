@@ -4,4 +4,5 @@ export interface Expense {
     price: number;
     location: string;
     date: Date;
+    category: string;
 }

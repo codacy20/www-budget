@@ -26,7 +26,7 @@
         <div class="form-group">
           <label for="itemNamelbl">Category</label>
           <label for="sel1">Select list:</label>
-          <select class="form-control" id="sel1">
+          <select class="form-control" #category id="category" name="category" ngModel>
             <option *ngFor="let category of categories">{{category}}</option>
           </select>
         </div>
