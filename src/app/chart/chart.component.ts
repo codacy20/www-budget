@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Expense } from '../Models/expense.interface';
+import { ChartExpense } from '../Models/chartExpense.interface';
 
 @Component({
   selector: 'app-chart',
@@ -82,9 +83,8 @@ export class ChartComponent implements OnInit, OnChanges {
     this.barChartData = [];
     this.masterArray.forEach((el: Expense) => {
       const date = new Date(el.date.toString());
-      const obj = {
+      const obj: ChartExpense = {
         data: [el.price],
-        data2: el.name,
         label: el.category,
         row: date.getMonth()
       };
