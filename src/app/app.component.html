@@ -44,6 +44,7 @@
         <button type="button" class="btn btn-danger floatRight" (click)="clearFilters()">Clear Filter</button>
         <ul class="list-group list-group-horizontal" *ngFor="let expense of expenseArray">
           <li class="list-group-item">€{{expense.price}}</li>
+          <li class="list-group-item">{{expense.category}}</li>
           <li class="list-group-item">{{expense.name}}</li>
           <li class="list-group-item">{{expense.location}}</li>
           <li class="list-group-item">{{expense.date | date}}</li>
