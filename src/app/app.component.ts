@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   expenseArray: Expense[] = [];
   categories = ['Business travel', 'Public relations, promotion and advertising', 'Office supplies',
     'Insurance', 'Education', 'Rent, phones, utilities'];
+  category = this.categories[0];
 
   constructor(private appService: AppService) { }
 

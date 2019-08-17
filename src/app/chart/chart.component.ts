@@ -85,7 +85,7 @@ export class ChartComponent implements OnInit, OnChanges {
       const obj = {
         data: [el.price],
         data2: el.name,
-        label: el.name,
+        label: el.category,
         row: date.getMonth()
       };
       data.push(obj);
