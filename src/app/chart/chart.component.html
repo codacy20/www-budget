@@ -1,11 +1,18 @@
 <div>
+  <div>
     <div>
-        <div>
-            <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="chartLabels" [options]="barChartOptions"
-                    [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
-            </div>
-        </div>
+      <div style="display: block">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="chartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+        ></canvas>
+      </div>
     </div>
+  </div>
 </div>
