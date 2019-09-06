@@ -27,23 +27,14 @@ const modules = [
   MatChipsModule,
   MatIconModule,
   MatTabsModule,
-  ChartsModule
+  ChartsModule,
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ChartComponent,
-    TimesheetComponent
-  ],
-  imports: [
-    modules
-  ],
-  exports: [
-    modules
-  ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, ChartComponent, TimesheetComponent],
+  imports: [modules],
+  exports: [modules],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

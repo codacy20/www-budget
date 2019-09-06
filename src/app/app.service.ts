@@ -13,9 +13,7 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getExpenses(): Observable<Expense[]> {
-    return (this.expenses = this.http
-      .get<Expense[]>(this.ROOT_URL + '/expense')
-      .pipe(catchError(this.errorHandler)));
+    return (this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler)));
   }
 
   getExpensesByDate(date: string) {

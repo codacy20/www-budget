@@ -1,10 +1,7 @@
 <div class="container">
   <mat-tab-group>
     <mat-tab label="Expenses">
-      <form
-        #expenseForm="ngForm"
-        (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()"
-      >
+      <form #expenseForm="ngForm" (ngSubmit)="expenseSubmit(expenseForm.value); expenseForm.resetForm()">
         <h1>Expenses</h1>
         <div class="form-group">
           <label for="itemNamelbl">Item's Name</label>
@@ -76,13 +73,7 @@
         </div>
         <div class="form-group">
           <label for="category">Category</label>
-          <select
-            class="form-control"
-            #category
-            id="category"
-            name="category"
-            ngModel
-          >
+          <select class="form-control" #category id="category" name="category" ngModel>
             <option *ngFor="let category of categories">{{ category }}</option>
           </select>
         </div>
@@ -93,16 +84,8 @@
           Total Spent this month: <b>€{{ total }}</b>
         </p>
         <mat-form-field>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            placeholder="Month and Year"
-            [formControl]="startDate"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker" placeholder="Month and Year" [formControl]="startDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker
             #picker
             startView="year"
@@ -111,21 +94,13 @@
           >
           </mat-datepicker>
         </mat-form-field>
-        <button
-          type="button"
-          class="btn btn-danger floatRight"
-          (click)="clearFilters()"
-        >
+        <button type="button" class="btn btn-danger floatRight" (click)="clearFilters()">
           Clear Filter
         </button>
-        <ul
-          class="list-group list-group-horizontal"
-          *ngFor="let expense of expenseArray"
-        >
+        <ul class="list-group list-group-horizontal" *ngFor="let expense of expenseArray">
           <li class="list-group-item">
             <span class="badge badge-info badge-pill" *ngIf="expense.vat"
-              >V.A.T:
-              {{ expense.vat ? expense.vat : 'V.A.T was not recorded' }}</span
+              >V.A.T: {{ expense.vat ? expense.vat : 'V.A.T was not recorded' }}</span
             >
             <b id="pricePadding">€{{ expense.price }}</b>
           </li>
@@ -143,7 +118,7 @@
       </div>
     </mat-tab>
     <mat-tab label="Timesheet">
-      <h1>Some more tab content</h1>
+      <app-timesheet></app-timesheet>
       <p>...</p>
     </mat-tab>
   </mat-tab-group>

@@ -7,10 +7,9 @@ import { ChartExpense } from '../Models/chartExpense.interface';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent implements OnInit, OnChanges {
-
   // tslint:disable-next-line: variable-name
   private _masterArray: Expense[];
 
@@ -25,35 +24,38 @@ export class ChartComponent implements OnInit, OnChanges {
   public barChartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: 'bottom'
+      position: 'bottom',
     },
     scales: {
-      xAxes: [{
-        stacked: true
-      }],
-      yAxes: [{
-        stacked: true,
-        display: true,
-        ticks: {
-          beginAtZero: true,
-        }
-      }],
+      xAxes: [
+        {
+          stacked: true,
+        },
+      ],
+      yAxes: [
+        {
+          stacked: true,
+          display: true,
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
     },
   };
 
-  public chartLabels: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  public chartLabels: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [];
 
   // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  public chartClicked({ event, active }: { event: MouseEvent; active: {}[] }): void {
     // console.log(event, active);
   }
 
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  public chartHovered({ event, active }: { event: MouseEvent; active: {}[] }): void {
     // console.log(event, active);
   }
 
@@ -61,7 +63,7 @@ export class ChartComponent implements OnInit, OnChanges {
     this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
   }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.dataSetter();
@@ -76,7 +78,6 @@ export class ChartComponent implements OnInit, OnChanges {
     this.dataSetter();
   }
 
-
   dataSetter() {
     // tslint:disable-next-line: prefer-const
     let data = [];
@@ -86,12 +87,12 @@ export class ChartComponent implements OnInit, OnChanges {
       const obj: ChartExpense = {
         data: [el.price],
         label: el.category,
-        row: date.getMonth()
+        row: date.getMonth(),
       };
       data.push(obj);
     });
 
-    data.forEach((element) => {
+    data.forEach(element => {
       for (let index = 0; index < element.row; index++) {
         element.data.splice(0, 0, 0);
       }
