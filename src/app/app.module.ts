@@ -15,6 +15,7 @@ import { ChartsModule } from 'ng2-charts';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
 
 const modules = [
   BrowserModule,
@@ -32,6 +33,7 @@ const modules = [
   ChartsModule,
   MatCardModule,
   MatGridListModule,
+  MatTableModule,
 ];
 
 @NgModule({
