@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { MatCardModule } from '@angular/material/card';
 
 const modules = [
   BrowserModule,
@@ -28,6 +29,7 @@ const modules = [
   MatIconModule,
   MatTabsModule,
   ChartsModule,
+  MatCardModule,
 ];
 
 @NgModule({

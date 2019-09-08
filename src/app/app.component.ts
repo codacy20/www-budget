@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Expense } from './Models/expense.interface';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import {
-  MatDatepicker,
-  MatDatepickerInputEvent,
-} from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
 
 export const MY_FORMATS = {
@@ -49,10 +42,7 @@ export class AppComponent implements OnInit {
 
   deleteItem(value: Expense) {
     for (let index = 0; index < this.expenseArray.length; index++) {
-      if (
-        value.name === this.expenseArray[index].name &&
-        value.date === this.expenseArray[index].date
-      ) {
+      if (value.name === this.expenseArray[index].name && value.date === this.expenseArray[index].date) {
         this.expenseArray.splice(index, 1);
         this.appService.deleteExpense(value._id).subscribe();
       }
@@ -77,18 +67,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  chosenMonthHandler(
-    value: MatDatepickerInputEvent<Date>,
-    datepicker: MatDatepicker<any>,
-  ) {
+  chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
-    this.appService
-      .getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`)
-      .subscribe(data => {
-        this.expenseArray = data;
-        this.getTotal();
-      });
+    this.appService.getExpensesByDate(`${date.getFullYear()}-${date.getMonth() + 1}`).subscribe(data => {
+      this.expenseArray = data;
+      this.getTotal();
+    });
     datepicker.close();
   }
 
