@@ -1,2 +1,27 @@
-<h1>Timesheet</h1>
-<mat-card>Simple card</mat-card>
+<mat-grid-list cols="1" rowHeight="3:1">
+  <mat-grid-tile>
+    <mat-card class="largeCard">
+      <h1 class="cardH1">Timesheet</h1>
+      <div class="form-group">
+        <label for="itemDatelbl">Date</label>
+        <input
+          #date
+          type="date"
+          class="form-control"
+          name="date"
+          id="date"
+          min="2018-01-01"
+          max="2020-12-31"
+          placeholder="Date"
+          autocomplete="off"
+          ngModel
+        />
+      </div>
+      <button type="button" class="newmsgb">today</button>
+      <button type="button" class="add-task-timesheet">Add new task</button>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>2</mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list>

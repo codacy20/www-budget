@@ -1,0 +1,45 @@
+.largeCard {
+  width: 80%;
+  height: 80%;
+  background: #f4f4f4;
+}
+
+.cardH1 {
+  font-family: 'Roboto';
+  color: #f97300;
+}
+
+.newmsgb {
+  border: solid 1px #1c7f7d;
+  background-color: transparent;
+  color: #1c7f7d;
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+  white-space: nowrap;
+}
+
+.newmsgb:hover {
+  background-color: #1c7f7d;
+  color: white;
+}
+
+.newmsgb:focus {
+  outline: none !important;
+}
+
+.add-task-timesheet {
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+  white-space: nowrap;
+  background-color: #dd8f5b;
+  border: none;
+  margin-left: 10px;
+  color: white;
+}
+
+.add-task-timesheet:hover {
+  background-color: #e15959;
+}
+.add-task-timesheet:focus {
+  outline: none !important;
+}
