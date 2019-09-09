@@ -1,6 +1,6 @@
 <mat-grid-list cols="1" rowHeight="3:1">
   <mat-grid-tile>
-    <mat-card class="largeCard">
+    <mat-card class="largeCard mat-elevation-z8">
       <h1 class="cardH1">Timesheet</h1>
       <div class="form-group">
         <label for="itemDatelbl">Date</label>
@@ -22,8 +22,8 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="largeCard example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -48,11 +48,9 @@
           <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-    </mat-card>
+    </div>
   </mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
 </mat-grid-list>

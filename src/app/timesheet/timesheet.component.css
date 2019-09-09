@@ -43,3 +43,12 @@
 .add-task-timesheet:focus {
   outline: none !important;
 }
+
+.example-container {
+  height: 80%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
