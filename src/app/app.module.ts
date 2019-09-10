@@ -16,6 +16,7 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { DatepickercustomComponent } from './datepickercustom/datepickercustom.component';
 
 const modules = [
   BrowserModule,
@@ -37,7 +38,7 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ChartComponent, TimesheetComponent],
+  declarations: [AppComponent, ChartComponent, TimesheetComponent, DatepickercustomComponent],
   imports: [modules],
   exports: [modules],
   providers: [],

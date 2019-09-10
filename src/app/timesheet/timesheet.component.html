@@ -24,8 +24,10 @@
     <mat-datepicker-toggle matSuffix [for]="pickerSearch"></mat-datepicker-toggle>
     <mat-datepicker #pickerSearch> </mat-datepicker>
   </mat-form-field>
-  <button type="button" class="newmsgb">Show</button>
-  <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
+  <div id="finishedPeriod">
+    <button type="button" class="newmsgb">Show</button>
+    <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
+  </div>
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0" *ngIf="addNewTask">
   <mat-card-title>Add Task</mat-card-title>
