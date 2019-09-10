@@ -19,21 +19,11 @@
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0">
   <mat-card-title>Timesheet search</mat-card-title>
-  <div class="form-group">
-    <label for="itemDatelbl">Date</label>
-    <input
-      #date
-      type="date"
-      class="form-control"
-      name="date"
-      id="date"
-      min="2018-01-01"
-      max="2020-12-31"
-      placeholder="Date"
-      autocomplete="off"
-      ngModel
-    />
-  </div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerSearch" placeholder="Select Month and Year" [formControl]="startDate" />
+    <mat-datepicker-toggle matSuffix [for]="pickerSearch"></mat-datepicker-toggle>
+    <mat-datepicker #pickerSearch> </mat-datepicker>
+  </mat-form-field>
   <button type="button" class="newmsgb">Show</button>
   <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
 </mat-card>
