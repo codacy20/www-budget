@@ -1,14 +1,12 @@
 .largeCard {
-  width: 80%;
-  height: 80%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background: #f4f4f4;
 }
 
-.cardH1 {
-  font-family: 'Roboto';
-  color: #f97300;
+#finishedPeriod {
+  display: block;
 }
-
 .newmsgb {
   border: solid 1px #1c7f7d;
   background-color: transparent;
@@ -51,4 +49,8 @@
 
 table {
   width: 100%;
+}
+
+.form-check {
+  margin-bottom: 1rem;
 }

@@ -1,60 +1,114 @@
-<mat-grid-list cols="1" rowHeight="3:1">
-  <mat-grid-tile>
-    <mat-card class="largeCard mat-elevation-z8">
-      <h1 class="cardH1">Timesheet</h1>
-      <div class="form-group">
-        <label for="itemDatelbl">Date</label>
-        <input
-          #date
-          type="date"
-          class="form-control"
-          name="date"
-          id="date"
-          min="2018-01-01"
-          max="2020-12-31"
-          placeholder="Date"
-          autocomplete="off"
-          ngModel
-        />
-      </div>
-      <button type="button" class="newmsgb">today</button>
-      <button type="button" class="add-task-timesheet">Add new task</button>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div class="largeCard example-container mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
-        <!-- Position Column -->
-        <ng-container matColumnDef="hour">
-          <th mat-header-cell *matHeaderCellDef>Hour</th>
-          <td mat-cell *matCellDef="let element">{{ element.hour }}</td>
-        </ng-container>
+<mat-card class="largeCard mat-elevation-z0">
+  <mat-card-title>Overview</mat-card-title>
+  <p>Total hours: {{ totalHours }}/160</p>
+  <p>
+    Activities: [
+    <span *ngFor="let element of activities">{{ element }}</span>
+    ]
+  </p>
+</mat-card>
+<mat-card class="largeCard mat-elevation-z0">
+  <mat-card-title>Time Period</mat-card-title>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Select Month and Year" [formControl]="startDate" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="year" [startAt]="startDate" (monthSelected)="chosenMonthHandler($event, picker)">
+    </mat-datepicker>
+  </mat-form-field>
+  <button id="finishedPeriod" type="button" class="newmsgb">Generate invoice</button>
+</mat-card>
+<mat-card class="largeCard mat-elevation-z0">
+  <mat-card-title>Timesheet search</mat-card-title>
+  <div class="form-group">
+    <label for="itemDatelbl">Date</label>
+    <input
+      #date
+      type="date"
+      class="form-control"
+      name="date"
+      id="date"
+      min="2018-01-01"
+      max="2020-12-31"
+      placeholder="Date"
+      autocomplete="off"
+      ngModel
+    />
+  </div>
+  <button type="button" class="newmsgb">Show</button>
+  <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
+</mat-card>
+<mat-card class="largeCard mat-elevation-z0" *ngIf="addNewTask">
+  <mat-card-title>Add Task</mat-card-title>
+  <div class="form-group">
+    <label for="itemNamelbl">Hours</label>
+    <input
+      #hours
+      min="1"
+      type="number"
+      class="form-control"
+      name="hours"
+      id="hours"
+      aria-describedby="hours"
+      placeholder="10"
+      autocomplete="off"
+      ngModel
+    />
+  </div>
+  <div class="form-group">
+    <label for="categorylbl">What has been done?</label>
+    <input
+      #category
+      type="text"
+      class="form-control"
+      name="category"
+      id="category"
+      aria-describedby="category"
+      placeholder="I worked on ..."
+      autocomplete="off"
+      ngModel
+    />
+  </div>
+  <div class="form-group">
+    <label for="itemDatelbl">Date</label>
+    <input
+      #date
+      type="date"
+      class="form-control"
+      name="date"
+      id="date"
+      min="2018-01-01"
+      max="2020-12-31"
+      placeholder="Date"
+      autocomplete="off"
+      ngModel
+    />
+  </div>
+  <button type="button" class="newmsgb">Add</button>
+</mat-card>
+<mat-card class="largeCard mat-elevation-z0">
+  <mat-card-title>Timesheet details</mat-card-title>
+  <div class="largeCard example-container mat-elevation-z0">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="hour">
+        <th mat-header-cell *matHeaderCellDef>Hour</th>
+        <td mat-cell *matCellDef="let element">{{ element.hour }}</td>
+      </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
-          <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
-        </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+      </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef>Category</th>
-          <td mat-cell *matCellDef="let element">{{ element.category }}</td>
-        </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card class="largeCard">
-      <p>Total hours: {{ totalHours }}</p>
-      <p>
-        Activities: [
-        <span *ngFor="let element of activities">{{ element }}</span>
-        ]
-      </p>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>

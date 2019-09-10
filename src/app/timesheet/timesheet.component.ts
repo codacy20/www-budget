@@ -26,6 +26,7 @@ export class TimesheetComponent implements OnInit {
   dataSource = ELEMENT_DATA[0].hours;
   totalHours = 0;
   activities = [];
+  addNewTask = false;
 
   constructor() {}
 
@@ -39,5 +40,9 @@ export class TimesheetComponent implements OnInit {
   getDaysInMonth(month: number, year: number) {
     const date = new Date(month, year, 0).getDate();
     return date;
+  }
+
+  showAddNewTask() {
+    this.addNewTask = !this.addNewTask;
   }
 }
