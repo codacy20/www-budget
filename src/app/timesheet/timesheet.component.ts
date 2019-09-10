@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Period } from '../Models/timesheet.interface';
 import { Timesheet } from '../Models/timesheet.interface';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material';
 
 const ELEMENT_DATA: Period[] = [
   {
@@ -27,6 +29,7 @@ export class TimesheetComponent implements OnInit {
   totalHours = 0;
   activities = [];
   addNewTask = false;
+  startDate = new FormControl(new Date());
 
   constructor() {}
 
@@ -44,5 +47,11 @@ export class TimesheetComponent implements OnInit {
 
   showAddNewTask() {
     this.addNewTask = !this.addNewTask;
+  }
+
+  chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
+    this.startDate.setValue(value);
+    const date = new Date(value.toString());
+    datepicker.close();
   }
 }
