@@ -1,1 +1,5 @@
-<p>datepickercustom works!</p>
+<mat-form-field>
+  <input matInput [matDatepicker]="pickerSearch" placeholder="Select Month and Year" [formControl]="startDate" />
+  <mat-datepicker-toggle matSuffix [for]="pickerSearch"></mat-datepicker-toggle>
+  <mat-datepicker #pickerSearch> </mat-datepicker>
+</mat-form-field>

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Period } from '../Models/timesheet.interface';
 import { Timesheet } from '../Models/timesheet.interface';
 import { FormControl } from '@angular/forms';
-import { MatDatepickerInputEvent, MatDatepicker, MAT_DATE_FORMATS } from '@angular/material';
-
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material';
 const ELEMENT_DATA: Period[] = [
   {
     finished: true,
@@ -17,18 +16,10 @@ const ELEMENT_DATA: Period[] = [
     ],
   },
 ];
-export const MY_FORMATS = {
-  parse: { dateInput: { month: 'short', year: 'numeric', day: 'numeric' } },
-  display: {
-    dateInput: { day: 'numeric', month: 'short', year: 'numeric' },
-    monthYearLabel: { year: 'numeric' },
-  },
-};
 
 @Component({
   selector: 'app-timesheet',
   templateUrl: './timesheet.component.html',
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }],
   styleUrls: ['./timesheet.component.css'],
 })
 export class TimesheetComponent implements OnInit {
