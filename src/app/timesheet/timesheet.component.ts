@@ -29,6 +29,7 @@ export class TimesheetComponent implements OnInit {
   activities = [];
   addNewTask = false;
   startDate = new FormControl(new Date());
+  dateChild = new Date();
 
   constructor() {}
 
@@ -52,5 +53,10 @@ export class TimesheetComponent implements OnInit {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
     datepicker.close();
+  }
+
+  recieveMessage($event) {
+    this.dateChild = new Date($event.value);
+    console.log(this.dateChild.getFullYear());
   }
 }

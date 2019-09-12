@@ -19,9 +19,8 @@
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0">
   <mat-card-title>Timesheet search</mat-card-title>
-  <app-datepickercustom></app-datepickercustom>
+  <app-datepickercustom (messageEvent)="recieveMessage($event)"></app-datepickercustom>
   <div id="finishedPeriod">
-    <button type="button" class="newmsgb">Show</button>
     <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
   </div>
 </mat-card>

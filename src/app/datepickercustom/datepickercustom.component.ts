@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material';
 import { FormControl } from '@angular/forms';
 export const MY_FORMATS = {
@@ -18,7 +18,12 @@ export const MY_FORMATS = {
 export class DatepickercustomComponent implements OnInit {
   startDate = new FormControl(new Date());
 
+  @Output() messageEvent = new EventEmitter<FormControl>();
   constructor() {}
 
   ngOnInit() {}
+
+  sendMessage() {
+    this.messageEvent.emit(this.startDate);
+  }
 }

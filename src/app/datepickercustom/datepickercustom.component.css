@@ -1,0 +1,20 @@
+#finishedPeriod {
+  display: block;
+}
+.newmsgb {
+  border: solid 1px #1c7f7d;
+  background-color: transparent;
+  color: #1c7f7d;
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+  white-space: nowrap;
+}
+
+.newmsgb:hover {
+  background-color: #1c7f7d;
+  color: white;
+}
+
+.newmsgb:focus {
+  outline: none !important;
+}

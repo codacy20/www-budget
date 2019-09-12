@@ -60,6 +60,7 @@ form input[type='text']::placeholder {
 .list-group-item {
   font-family: 'Roboto';
   overflow: hidden;
+  width: 20%;
 }
 
 .list-group-horizontal .list-group-item:last-child {
