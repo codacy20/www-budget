@@ -2,46 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Expense } from './Models/expense.interface';
+import { Period } from '../Models/timesheet.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  readonly ROOT_URL = 'http://localhost:3000';
-  expenses: any;
+  readonly ROOT_URL = 'http://localhost:3000/timesheet';
+  timePeriod: any;
   constructor(private http: HttpClient) {}
 
-  getExpenses(): Observable<Expense[]> {
-    return (this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler)));
+  getTimePeriod(): Observable<Period[]> {
+    return (this.timePeriod = this.http.get<Period[]>(this.ROOT_URL).pipe(catchError(this.errorHandler)));
   }
 
-  getExpensesByDate(date: string) {
-    return (this.expenses = this.http
-      .get<Expense[]>(this.ROOT_URL + '/expense/' + date)
-      .pipe(catchError(this.errorHandler)));
-  }
-
-  postExpenses(expense: Expense): Observable<Expense> {
-    return (this.expenses = this.http
-      .post<any>(this.ROOT_URL + '/expense', {
-        name: expense.name,
-        price: expense.price,
-        location: expense.location,
-        date: expense.date,
-        category: expense.category,
-        vat: expense.vat,
-      })
-      .pipe(catchError(this.errorHandler)));
-  }
-
-  deleteExpense(name: string) {
-    return (this.expenses = this.http
-      .delete<any>(`${this.ROOT_URL}/expense/${name}`)
+  getTimePeriodByDate(date: string) {
+    return (this.timePeriod = this.http
+      .get<Period[]>(this.ROOT_URL + '/expense/' + date)
       .pipe(catchError(this.errorHandler)));
   }
 
   errorHandler(error: HttpErrorResponse) {
+    console.error(error);
     return throwError(error.message || 'Server Error! Sorry');
   }
 }

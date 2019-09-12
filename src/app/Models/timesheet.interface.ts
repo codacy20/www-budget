@@ -1,12 +1,12 @@
 export interface Timesheet {
-  hour: number;
+  hours: number;
   date: Date;
   category: string;
 }
 
 export interface Period {
-  hours: Timesheet[];
+  timeslots: Timesheet[];
   finished: boolean;
-  start: Date;
-  end: Date;
+  month: number;
+  year: number;
 }

@@ -3,19 +3,7 @@ import { Period } from '../Models/timesheet.interface';
 import { Timesheet } from '../Models/timesheet.interface';
 import { FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material';
-const ELEMENT_DATA: Period[] = [
-  {
-    finished: true,
-    start: new Date(),
-    end: new Date(),
-    hours: [
-      { hour: 2, date: new Date(), category: 'some project' },
-      { hour: 2, date: new Date(), category: 'some project' },
-      { hour: 2, date: new Date(), category: 'some project' },
-      { hour: 2, date: new Date(), category: 'some project' },
-    ],
-  },
-];
+import { AppService } from './timesheet.service';
 
 @Component({
   selector: 'app-timesheet',
@@ -24,21 +12,24 @@ const ELEMENT_DATA: Period[] = [
 })
 export class TimesheetComponent implements OnInit {
   displayedColumns: string[] = ['hour', 'date', 'category'];
-  dataSource = ELEMENT_DATA[0].hours;
+  dataSourceFetch: Period[];
+  dataSourceHours: Timesheet[];
   totalHours = 0;
   activities = [];
   addNewTask = false;
   startDate = new FormControl(new Date());
   dateChild = new Date();
 
-  constructor() {}
+  constructor(private service: AppService) {}
 
-  ngOnInit() {
-    this.dataSource.forEach((element: Timesheet) => {
-      this.totalHours += element.hour;
-      this.activities.push(element.category);
-    });
-  }
+  ngOnInit() {}
+
+  // fetchActivities() {
+  //   this.dataSourceFetch[0].hours.forEach((element: Timesheet) => {
+  //     this.totalHours += element.hour;
+  //     this.activities.push(element.category);
+  //   });
+  // }
 
   getDaysInMonth(month: number, year: number) {
     const date = new Date(month, year, 0).getDate();
@@ -57,6 +48,14 @@ export class TimesheetComponent implements OnInit {
 
   recieveMessage($event) {
     this.dateChild = new Date($event.value);
-    console.log(this.dateChild.getFullYear());
+    this.fetchPeriod(this.dateChild);
+  }
+
+  fetchPeriod(dateChild: Date) {
+    return this.service.getTimePeriod().subscribe((data: Period[]) => {
+      this.dataSourceFetch = data;
+      this.dataSourceHours = data[0].timeslots;
+      console.log(data[0]);
+    });
   }
 }

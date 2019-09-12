@@ -20,9 +20,6 @@
 <mat-card class="largeCard mat-elevation-z0">
   <mat-card-title>Timesheet search</mat-card-title>
   <app-datepickercustom (messageEvent)="recieveMessage($event)"></app-datepickercustom>
-  <div id="finishedPeriod">
-    <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
-  </div>
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0" *ngIf="addNewTask">
   <mat-card-title>Add Task</mat-card-title>
@@ -74,12 +71,15 @@
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0">
   <mat-card-title>Timesheet details</mat-card-title>
+  <div id="finishedPeriod">
+    <button type="button" class="add-task-timesheet" (click)="showAddNewTask()">Add new task</button>
+  </div>
   <div class="largeCard example-container mat-elevation-z0">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSourceHours">
       <!-- Position Column -->
       <ng-container matColumnDef="hour">
         <th mat-header-cell *matHeaderCellDef>Hour</th>
-        <td mat-cell *matCellDef="let element">{{ element.hour }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
       </ng-container>
 
       <!-- Name Column -->
