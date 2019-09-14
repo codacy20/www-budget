@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Period } from '../Models/timesheet.interface';
+import { Timesheet } from '../Models/timesheet.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,16 @@ export class AppService {
     return (this.timePeriod = this.http
       .get<Period[]>(this.ROOT_URL + '/expense/' + date)
       .pipe(catchError(this.errorHandler)));
+  }
+
+  postTimesheet(formValue: Timesheet): Observable<Timesheet> {
+    return this.http
+      .post<any>(this.ROOT_URL + '/update', {
+        category: formValue.category,
+        date: formValue.date,
+        hours: formValue.hours,
+      })
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {

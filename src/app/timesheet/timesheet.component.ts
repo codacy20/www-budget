@@ -58,4 +58,11 @@ export class TimesheetComponent implements OnInit {
       console.log(data[0]);
     });
   }
+
+  postTimeslots(formValue: Timesheet) {
+    this.service.postTimesheet(formValue).subscribe(result => {
+      // tempExpense._id = result._id;
+      this.dataSourceHours.push(result);
+    });
+  }
 }
