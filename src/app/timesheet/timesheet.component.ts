@@ -12,7 +12,7 @@ import { AppService } from './timesheet.service';
 })
 export class TimesheetComponent implements OnInit {
   displayedColumns: string[] = ['hour', 'date', 'category'];
-  dataSourceFetch: Period[];
+  fetchedPeriod: Period[] = [];
   dataSourceHours: Timesheet[];
   totalHours = 0;
   activities = [];
@@ -23,15 +23,17 @@ export class TimesheetComponent implements OnInit {
   constructor(private service: AppService) {}
 
   ngOnInit() {
-    this.fetchPeriod(new Date());
+    this.fetchPeriodbyDate(new Date());
   }
 
-  // fetchActivities() {
-  //   this.dataSourceFetch[0].hours.forEach((element: Timesheet) => {
-  //     this.totalHours += element.hour;
-  //     this.activities.push(element.category);
-  //   });
-  // }
+  fetchActivities() {
+    this.totalHours = 0;
+    this.activities = [];
+    this.fetchedPeriod[0].timeslots.forEach((element: Timesheet) => {
+      this.totalHours += element.hours;
+      this.activities.push(element.category);
+    });
+  }
 
   getDaysInMonth(month: number, year: number) {
     const date = new Date(month, year, 0).getDate();
@@ -53,10 +55,11 @@ export class TimesheetComponent implements OnInit {
     this.fetchPeriodbyDate(this.dateChild);
   }
 
-  fetchPeriod(dateChild: Date) {
+  fetchPeriod() {
     return this.service.getTimePeriod().subscribe((data: Period[]) => {
-      this.dataSourceFetch = data;
+      this.fetchedPeriod = data;
       this.dataSourceHours = data[0].timeslots; // have to fix this. [0]??
+      this.fetchActivities();
       // console.log(data[0]);
     });
   }
@@ -64,8 +67,9 @@ export class TimesheetComponent implements OnInit {
   fetchPeriodbyDate(dateChild: Date) {
     return this.service.getTimePeriodByDate(dateChild).subscribe(
       (data: Period) => {
-        this.dataSourceFetch.push(data);
+        this.fetchedPeriod.push(data);
         this.dataSourceHours = data.timeslots;
+        this.fetchActivities();
       },
       err => {
         this.service.openSnackBar('Sorry failed to call the mothership');
@@ -79,6 +83,7 @@ export class TimesheetComponent implements OnInit {
       result => {
         this.service.openSnackBar('Well Done!');
         this.dataSourceHours = result.timeslots;
+        this.fetchActivities();
       },
       err => this.service.openSnackBar('Sorry failed to call the mothership'),
     );
