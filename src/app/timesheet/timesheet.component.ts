@@ -22,7 +22,9 @@ export class TimesheetComponent implements OnInit {
 
   constructor(private service: AppService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchPeriod(new Date());
+  }
 
   // fetchActivities() {
   //   this.dataSourceFetch[0].hours.forEach((element: Timesheet) => {
@@ -54,8 +56,8 @@ export class TimesheetComponent implements OnInit {
   fetchPeriod(dateChild: Date) {
     return this.service.getTimePeriod().subscribe((data: Period[]) => {
       this.dataSourceFetch = data;
-      this.dataSourceHours = data[0].timeslots;
-      console.log(data[0]);
+      this.dataSourceHours = data[0].timeslots; // have to fix this. [0]??
+      // console.log(data[0]);
     });
   }
 
