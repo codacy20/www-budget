@@ -17,9 +17,10 @@ export class AppService {
     return (this.timePeriod = this.http.get<Period[]>(this.ROOT_URL).pipe(catchError(this.errorHandler)));
   }
 
-  getTimePeriodByDate(date: string) {
+  getTimePeriodByDate(date: Date) {
+    const formatedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     return (this.timePeriod = this.http
-      .get<Period[]>(this.ROOT_URL + '/expense/' + date)
+      .get<Period>(this.ROOT_URL + '/' + formatedDate)
       .pipe(catchError(this.errorHandler)));
   }
 

@@ -50,13 +50,21 @@ export class TimesheetComponent implements OnInit {
 
   recieveMessage($event) {
     this.dateChild = new Date($event.value);
-    this.fetchPeriod(this.dateChild);
+    this.fetchPeriodbyDate(this.dateChild);
   }
 
   fetchPeriod(dateChild: Date) {
     return this.service.getTimePeriod().subscribe((data: Period[]) => {
       this.dataSourceFetch = data;
       this.dataSourceHours = data[0].timeslots; // have to fix this. [0]??
+      // console.log(data[0]);
+    });
+  }
+
+  fetchPeriodbyDate(dateChild: Date) {
+    return this.service.getTimePeriodByDate(dateChild).subscribe((data: Period) => {
+      this.dataSourceFetch.push(data);
+      this.dataSourceHours = data.timeslots; // have to fix this. [0]??
       // console.log(data[0]);
     });
   }
