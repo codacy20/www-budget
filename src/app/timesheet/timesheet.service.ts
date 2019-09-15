@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Period } from '../Models/timesheet.interface';
 import { Timesheet } from '../Models/timesheet.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { Timesheet } from '../Models/timesheet.interface';
 export class AppService {
   readonly ROOT_URL = 'http://localhost:3000/timesheet';
   timePeriod: any;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   getTimePeriod(): Observable<Period[]> {
     return (this.timePeriod = this.http.get<Period[]>(this.ROOT_URL).pipe(catchError(this.errorHandler)));
@@ -24,7 +25,7 @@ export class AppService {
       .pipe(catchError(this.errorHandler)));
   }
 
-  postTimesheet(formValue: Timesheet): Observable<Timesheet> {
+  postTimesheet(formValue: Timesheet): Observable<Period> {
     return this.http
       .post<any>(this.ROOT_URL + '/update', {
         category: formValue.category,
@@ -34,8 +35,13 @@ export class AppService {
       .pipe(catchError(this.errorHandler));
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 2000,
+    });
+  }
+
   errorHandler(error: HttpErrorResponse) {
-    console.error(error);
     return throwError(error.message || 'Server Error! Sorry');
   }
 }

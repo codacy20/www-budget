@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { DatepickercustomComponent } from './datepickercustom/datepickercustom.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const modules = [
   BrowserModule,
@@ -35,6 +36,7 @@ const modules = [
   MatCardModule,
   MatGridListModule,
   MatTableModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

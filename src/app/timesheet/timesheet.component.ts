@@ -62,17 +62,25 @@ export class TimesheetComponent implements OnInit {
   }
 
   fetchPeriodbyDate(dateChild: Date) {
-    return this.service.getTimePeriodByDate(dateChild).subscribe((data: Period) => {
-      this.dataSourceFetch.push(data);
-      this.dataSourceHours = data.timeslots; // have to fix this. [0]??
-      // console.log(data[0]);
-    });
+    return this.service.getTimePeriodByDate(dateChild).subscribe(
+      (data: Period) => {
+        this.dataSourceFetch.push(data);
+        this.dataSourceHours = data.timeslots;
+      },
+      err => {
+        this.service.openSnackBar('Sorry failed to call the mothership');
+        this.dataSourceHours = [];
+      },
+    );
   }
 
   postTimeslots(formValue: Timesheet) {
-    this.service.postTimesheet(formValue).subscribe(result => {
-      // tempExpense._id = result._id;
-      this.dataSourceHours.push(result);
-    });
+    this.service.postTimesheet(formValue).subscribe(
+      result => {
+        this.service.openSnackBar('Well Done!');
+        this.dataSourceHours = result.timeslots;
+      },
+      err => this.service.openSnackBar('Sorry failed to call the mothership'),
+    );
   }
 }
