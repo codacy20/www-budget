@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Expense } from './Models/expense.interface';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 export const MY_FORMATS = {
   parse: { dateInput: { month: 'short', year: 'numeric', day: 'numeric' } },
   display: {
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
   ];
   category = this.categories[0];
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.clearFilters();
@@ -48,6 +49,14 @@ export class AppComponent implements OnInit {
       }
     }
     this.getTotal();
+  }
+
+  openDialog(expense: Expense) {
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.deleteItem(expense);
+    });
   }
 
   expenseSubmit(value: any) {

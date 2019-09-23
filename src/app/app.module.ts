@@ -18,6 +18,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { DatepickercustomComponent } from './datepickercustom/datepickercustom.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatButtonModule } from '@angular/material/button';
 
 const modules = [
   BrowserModule,
@@ -37,10 +40,13 @@ const modules = [
   MatGridListModule,
   MatTableModule,
   MatSnackBarModule,
+  MatDialogModule,
+  MatButtonModule,
 ];
 
 @NgModule({
-  declarations: [AppComponent, ChartComponent, TimesheetComponent, DatepickercustomComponent],
+  declarations: [AppComponent, ChartComponent, TimesheetComponent, DatepickercustomComponent, DialogComponent],
+  entryComponents: [DialogComponent],
   imports: [modules],
   exports: [modules],
   providers: [],
