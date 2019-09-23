@@ -110,8 +110,11 @@
           <li class="list-group-item">{{ expense.name }}</li>
           <li class="list-group-item">{{ expense.location }}</li>
           <li class="list-group-item">{{ expense.date | date }}</li>
-          <li class="list-group-item">
+          <li class="list-group-item small">
             <i (click)="deleteItem(expense)" class="material-icons">delete</i>
+          </li>
+          <li class="list-group-item small">
+            <i class="material-icons">photo_camera</i>
           </li>
         </ul>
       </div>
