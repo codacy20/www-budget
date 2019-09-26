@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     'Rent, phones, utilities',
   ];
   category = this.categories[0];
+  fileToUpload: File = null;
 
   constructor(private appService: AppService, public dialog: MatDialog) {}
 
@@ -91,6 +92,21 @@ export class AppComponent implements OnInit {
       this.expenseArray = data;
       this.getTotal();
     });
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  uploadFileToActivity() {
+    this.appService.postFile(this.fileToUpload).subscribe(
+      data => {
+        // do something, if upload success
+      },
+      error => {
+        console.log(error);
+      },
+    );
   }
 
   getTotal() {

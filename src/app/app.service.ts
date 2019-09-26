@@ -41,6 +41,12 @@ export class AppService {
       .pipe(catchError(this.errorHandler)));
   }
 
+  postFile(fileToUpload: File): Observable<boolean> {
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    return this.http.post<any>(this.ROOT_URL, formData).pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || 'Server Error! Sorry');
   }

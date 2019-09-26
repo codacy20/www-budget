@@ -114,7 +114,10 @@
             <i (click)="openDialog(expense)" class="material-icons">delete</i>
           </li>
           <li class="list-group-item small">
-            <i class="material-icons">photo_camera</i>
+            <div class="form-group">
+              <i class="material-icons">photo_camera</i>
+              <input type="file" id="file" (change)="handleFileInput($event.target.files)" />
+            </div>
           </li>
         </ul>
       </div>
