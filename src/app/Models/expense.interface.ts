@@ -6,4 +6,5 @@ export interface Expense {
   date: Date;
   category: string;
   vat: number;
+  receipt?: string;
 }

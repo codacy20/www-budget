@@ -94,14 +94,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  handleFileInput(files: FileList) {
+  handleFileInput(files: FileList, id: string) {
     this.fileToUpload = files.item(0);
+    this.uploadFileToActivity(id);
   }
 
-  uploadFileToActivity() {
-    this.appService.postFile(this.fileToUpload).subscribe(
+  uploadFileToActivity(id: string) {
+    this.appService.postFile(this.fileToUpload, id).subscribe(
       data => {
-        // do something, if upload success
+        console.log(data);
       },
       error => {
         console.log(error);

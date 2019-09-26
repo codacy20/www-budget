@@ -8,12 +8,12 @@ import { Expense } from './Models/expense.interface';
   providedIn: 'root',
 })
 export class AppService {
-  readonly ROOT_URL = 'http://localhost:3000';
+  readonly ROOT_URL = 'http://localhost:3000/expense';
   expenses: any;
   constructor(private http: HttpClient) {}
 
   getExpenses(): Observable<Expense[]> {
-    return (this.expenses = this.http.get<Expense[]>(this.ROOT_URL + '/expense').pipe(catchError(this.errorHandler)));
+    return (this.expenses = this.http.get<Expense[]>(this.ROOT_URL).pipe(catchError(this.errorHandler)));
   }
 
   getExpensesByDate(date: string) {
@@ -24,7 +24,7 @@ export class AppService {
 
   postExpenses(expense: Expense): Observable<Expense> {
     return (this.expenses = this.http
-      .post<any>(this.ROOT_URL + '/expense', {
+      .post<any>(this.ROOT_URL, {
         name: expense.name,
         price: expense.price,
         location: expense.location,
@@ -37,14 +37,14 @@ export class AppService {
 
   deleteExpense(name: string) {
     return (this.expenses = this.http
-      .delete<any>(`${this.ROOT_URL}/expense/${name}`)
+      .delete<any>(`${this.ROOT_URL}/${name}`)
       .pipe(catchError(this.errorHandler)));
   }
 
-  postFile(fileToUpload: File): Observable<boolean> {
+  postFile(fileToUpload: File, id: string): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post<any>(this.ROOT_URL, formData).pipe(catchError(this.errorHandler));
+    return this.http.post<any>(this.ROOT_URL + '/upload/' + id, formData).pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse) {
