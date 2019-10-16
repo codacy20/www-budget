@@ -94,11 +94,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  handleFileInput(files: FileList, id: string, name: string) {
-    console.log(id);
-    console.log(name);
-    // this.fileToUpload = files.item(0);
-    // this.uploadFileToActivity(id);
+  handleFileInput(files: FileList, expense: Expense) {
+    this.fileToUpload = files.item(0);
+    this.uploadFileToActivity(expense._id);
   }
 
   uploadFileToActivity(id: string) {

@@ -114,20 +114,14 @@
             <i (click)="openDialog(expense)" class="material-icons">delete</i>
           </li>
           <li class="list-group-item small">
-            <div class="form-group" *ngIf="!expense.receipt">
-              <label for="file">
-                <i class="material-icons"
-                  >add_photo_alternate
-                  <input
-                    type="file"
-                    name="file"
-                    id="file"
-                    class="fileUpload"
-                    (change)="handleFileInput($event.target.files, expense._id, expense.name)"
-                  />
-                </i>
-              </label>
-            </div>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              class="fileUpload"
+              (change)="handleFileInput($event.target.files, expense)"
+              *ngIf="!expense.receipt"
+            >
             <div class="form-group" *ngIf="expense.receipt">
               <i class="material-icons">photo</i>
             </div>
