@@ -19,7 +19,7 @@ export class AppService {
 
   getExpensesByDate(date: string) {
     return (this.expenses = this.http
-      .get<Expense[]>(this.ROOT_URL + '/expense/' + date)
+      .get<Expense[]>(this.ROOT_URL + '/date=' + date)
       .pipe(catchError(this.errorHandler)));
   }
 
