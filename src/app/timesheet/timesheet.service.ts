@@ -35,6 +35,17 @@ export class AppService {
       .pipe(catchError(this.errorHandler));
   }
 
+  stopStartPeriod(monthYear: { month: number; year: number }): Observable<Period> {
+    const month = monthYear.month;
+    const year = monthYear.year;
+    return this.http
+      .post<any>(this.ROOT_URL + '/stopStart', {
+        month,
+        year,
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Dismiss', {
       duration: 2000,

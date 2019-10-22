@@ -88,4 +88,19 @@ export class TimesheetComponent implements OnInit {
       err => this.service.openSnackBar('Sorry failed to call the mothership'),
     );
   }
+
+  stopStartPeriod() {
+    const monthYear = this.getMonthYear(this.startDate);
+    this.service.stopStartPeriod(monthYear).subscribe(
+      result => {
+        this.service.openSnackBar('Period was started/ended!');
+      },
+      err => this.service.openSnackBar('Sorry failed to call the mothership, Check the console'),
+    );
+  }
+
+  getMonthYear(startDate: FormControl) {
+    const monthYear = new Date(startDate.value);
+    return { month: monthYear.getMonth() + 1, year: monthYear.getFullYear() };
+  }
 }
