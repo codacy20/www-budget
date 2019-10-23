@@ -92,8 +92,10 @@ export class TimesheetComponent implements OnInit {
   stopStartPeriod() {
     const monthYear = this.getMonthYear(this.startDate);
     this.service.stopStartPeriod(monthYear).subscribe(
-      result => {
-        this.service.openSnackBar('Period was started/ended!');
+      (result: Period) => { // TODO UPDATE THE HTML ELEMENT USING FINISHED
+        this.fetchedPeriod.push(result);
+        if (result.finished) this.service.openSnackBar('Period was started');
+        else this.service.openSnackBar('Period was ended');
       },
       err => this.service.openSnackBar('Sorry failed to call the mothership, Check the console'),
     );
