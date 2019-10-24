@@ -18,11 +18,11 @@ export class AppService {
     return (this.timePeriod = this.http.get<Period[]>(this.ROOT_URL).pipe(catchError(this.errorHandler)));
   }
 
-  getTimePeriodByDate(date: Date) {
+  async getTimePeriodByDate(date: Date) {
     const formatedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     return (this.timePeriod = this.http
       .get<Period>(this.ROOT_URL + '/' + formatedDate)
-      .pipe(catchError(this.errorHandler)));
+      .pipe(catchError(this.errorHandler))).toPromise();
   }
 
   postTimesheet(formValue: Timesheet): Observable<Period> {

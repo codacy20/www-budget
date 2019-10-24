@@ -16,8 +16,10 @@
     </mat-datepicker>
   </mat-form-field>
   <button id="finishedPeriod" type="button" class="newmsgb">Generate invoice</button>
-  <button *ngIf="fetchedPeriod.finished" type="button" class="add-task-timesheet" (click)="stopStartPeriod()">Start Period</button>
-  <button *ngIf="!fetchedPeriod.finished" type="button" class="add-task-timesheet" (click)="stopStartPeriod()">Start Period</button>
+  <button *ngIf="this.fetchedPeriod.length > 0" id="finishedPeriod" type="button" class="newmsgb" (click)="stopStartPeriod()">
+    <span *ngIf="fetchedPeriod[0].finished">End Period</span>
+    <span *ngIf="!fetchedPeriod[0].finished">Start Period</span>
+  </button>
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0">
   <mat-card-title>Timesheet search</mat-card-title>

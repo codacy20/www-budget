@@ -22,8 +22,8 @@ export class TimesheetComponent implements OnInit {
 
   constructor(private service: AppService) {}
 
-  ngOnInit() {
-    this.fetchPeriodbyDate(new Date());
+  async ngOnInit() {
+    await this.fetchPeriodbyDate(new Date());
   }
 
   fetchActivities() {
@@ -64,8 +64,8 @@ export class TimesheetComponent implements OnInit {
     });
   }
 
-  fetchPeriodbyDate(dateChild: Date) {
-    return this.service.getTimePeriodByDate(dateChild).subscribe(
+  async fetchPeriodbyDate(dateChild: Date) {
+    return await this.service.getTimePeriodByDate(dateChild).then(
       (data: Period) => {
         this.fetchedPeriod.push(data);
         this.dataSourceHours = data.timeslots;
@@ -92,8 +92,10 @@ export class TimesheetComponent implements OnInit {
   stopStartPeriod() {
     const monthYear = this.getMonthYear(this.startDate);
     this.service.stopStartPeriod(monthYear).subscribe(
-      (result: Period) => { // TODO UPDATE THE HTML ELEMENT USING FINISHED
-        this.fetchedPeriod.push(result);
+      (result: Period) => {
+        // TODO UPDATE THE HTML ELEMENT USING FINISHED
+        this.fetchedPeriod[0] = result;
+        console.log(this.fetchedPeriod);
         if (result.finished) this.service.openSnackBar('Period was started');
         else this.service.openSnackBar('Period was ended');
       },
