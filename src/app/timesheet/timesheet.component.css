@@ -4,9 +4,6 @@
   background: #f4f4f4;
 }
 
-#finishedPeriod {
-  display: block;
-}
 .newmsgb {
   border: solid 1px #1c7f7d;
   background-color: transparent;
@@ -14,6 +11,11 @@
   border-radius: 5px;
   padding: 7px 15px 7px 15px;
   white-space: nowrap;
+}
+
+.timePeriodSection{
+  display: inline-block;
+  margin: 0 0 0 1em;
 }
 
 .newmsgb:hover {
@@ -31,7 +33,6 @@
   white-space: nowrap;
   background-color: #dd8f5b;
   border: none;
-  margin-left: 10px;
   color: white;
 }
 

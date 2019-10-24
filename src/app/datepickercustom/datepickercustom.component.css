@@ -1,5 +1,6 @@
 #finishedPeriod {
-  display: block;
+  display: inline-block;
+  margin: 0 0 0 1em;
 }
 .newmsgb {
   border: solid 1px #1c7f7d;
