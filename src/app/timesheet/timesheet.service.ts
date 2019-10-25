@@ -46,6 +46,15 @@ export class AppService {
       .pipe(catchError(this.errorHandler));
   }
 
+  checkPeriod(date: Date, fetchPeriod: Period[]): Period {
+    fetchPeriod.forEach((element: Period) => {
+      if (element.month === date.getMonth() + 1 && element.year === date.getFullYear()) {
+        return element;
+      }
+    });
+    return null;
+  }
+
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Dismiss', {
       duration: 2000,

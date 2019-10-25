@@ -23,7 +23,7 @@ export class TimesheetComponent implements OnInit {
   constructor(private service: AppService) {}
 
   async ngOnInit() {
-    await this.fetchPeriodbyDate(new Date());
+    this.fetchPeriod();
   }
 
   fetchActivities() {
@@ -47,6 +47,12 @@ export class TimesheetComponent implements OnInit {
   chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
+    const result = this.service.checkPeriod(date, this.fetchedPeriod);
+    if(result){
+      this.fetchedPeriod = [];
+      this.fetchedPeriod.push(result);
+    }
+    console.log(this.fetchedPeriod)
     datepicker.close();
   }
 
@@ -58,8 +64,8 @@ export class TimesheetComponent implements OnInit {
   fetchPeriod() {
     return this.service.getTimePeriod().subscribe((data: Period[]) => {
       this.fetchedPeriod = data;
-      this.dataSourceHours = data[0].timeslots; // have to fix this. [0]??
-      this.fetchActivities();
+      // this.dataSourceHours = data[0].timeslots; // have to fix this. [0]??
+      // this.fetchActivities();
       // console.log(data[0]);
     });
   }
