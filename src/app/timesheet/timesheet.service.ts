@@ -49,11 +49,7 @@ export class AppService {
   checkPeriod(date: Date, fetchPeriod: Period[]): Period {
     let result: Period;
     fetchPeriod.forEach((element: Period) => {
-      console.log(element.month, element.year);
-      console.log(date.getMonth() + 1, date.getFullYear());
-      console.log('-----');
       if (element.month === date.getMonth() + 1 && element.year === date.getFullYear()) {
-        console.log('now')
         result = element;
       }
     });
