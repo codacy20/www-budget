@@ -19,6 +19,7 @@ export class TimesheetComponent implements OnInit {
   addNewTask = false;
   startDate = new FormControl(new Date());
   dateChild = new Date();
+  selectedPeriod: Period;
 
   constructor(private service: AppService) {}
 
@@ -48,11 +49,11 @@ export class TimesheetComponent implements OnInit {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
     const result = this.service.checkPeriod(date, this.fetchedPeriod);
-    if(result){
-      this.fetchedPeriod = [];
-      this.fetchedPeriod.push(result);
+    if (result) {
+      this.selectedPeriod = result;
+    } else {
+      this.selectedPeriod = null;
     }
-    console.log(this.fetchedPeriod)
     datepicker.close();
   }
 

@@ -17,13 +17,13 @@
   </mat-form-field>
   <button type="button" class="newmsgb timePeriodSection">Generate invoice</button>
   <button
-    *ngIf="this.fetchedPeriod.length > 0"
+    *ngIf="selectedPeriod"
     type="button"
     class="newmsgb timePeriodSection"
     (click)="stopStartPeriod()"
   >
-    <span *ngIf="!fetchedPeriod[0].finished">End Period</span>
-    <span *ngIf="fetchedPeriod[0].finished">Start Period</span>
+    <span *ngIf="!selectedPeriod.finished">End Period</span>
+    <span *ngIf="selectedPeriod.finished">Start Period</span>
   </button>
 </mat-card>
 <mat-card class="largeCard mat-elevation-z0">
