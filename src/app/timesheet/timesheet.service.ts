@@ -46,7 +46,7 @@ export class AppService {
       .pipe(catchError(this.errorHandler));
   }
 
-  async checkPeriod(date: Date, fetchPeriod: Period[]): Period {
+  checkPeriod(date: Date, fetchPeriod: Period[]): Period {
     let result: Period;
     fetchPeriod.forEach((element: Period) => {
       if (element.month === date.getMonth() + 1 && element.year === date.getFullYear()) {
