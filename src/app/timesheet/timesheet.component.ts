@@ -19,12 +19,13 @@ export class TimesheetComponent implements OnInit {
   addNewTask = false;
   startDate = new FormControl(new Date());
   dateChild = new Date();
-  selectedPeriod: Period;
+  selectedPeriod: Period = null;
 
   constructor(private service: AppService) {}
 
   async ngOnInit() {
     this.fetchPeriod();
+    await this.lookForPeriod(new Date());
   }
 
   fetchActivities() {
@@ -45,16 +46,20 @@ export class TimesheetComponent implements OnInit {
     this.addNewTask = !this.addNewTask;
   }
 
-  chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker: MatDatepicker<any>) {
+  chosenMonthHandler(value: MatDatepickerInputEvent<Date>, datepicker?: MatDatepicker<any>) {
     this.startDate.setValue(value);
     const date = new Date(value.toString());
+    this.lookForPeriod(date);
+    datepicker.close();
+  }
+
+  lookForPeriod(date: Date): Promise<Period> {
     const result = this.service.checkPeriod(date, this.fetchedPeriod);
     if (result) {
       this.selectedPeriod = result;
-    } else {
-      this.selectedPeriod = null;
+      // return this.selectedPeriod;
     }
-    datepicker.close();
+    this.selectedPeriod = null;
   }
 
   recieveMessage($event) {
