@@ -25,7 +25,7 @@ export class TimesheetComponent implements OnInit {
 
   async ngOnInit() {
     this.fetchPeriod();
-    await this.lookForPeriod(new Date());
+    this.lookForPeriod(new Date());
   }
 
   fetchActivities() {
@@ -53,11 +53,11 @@ export class TimesheetComponent implements OnInit {
     datepicker.close();
   }
 
-  lookForPeriod(date: Date): Promise<Period> {
+  lookForPeriod(date: Date): Period {
     const result = this.service.checkPeriod(date, this.fetchedPeriod);
     if (result) {
       this.selectedPeriod = result;
-      // return this.selectedPeriod;
+      return this.selectedPeriod;
     }
     this.selectedPeriod = null;
   }
@@ -106,8 +106,9 @@ export class TimesheetComponent implements OnInit {
     this.service.stopStartPeriod(monthYear).subscribe(
       (result: Period) => {
         // TODO UPDATE THE HTML ELEMENT USING FINISHED
-        this.fetchedPeriod[0] = result;
+        // this.fetchedPeriod[0] = result;
         console.log(this.fetchedPeriod);
+        this.selectedPeriod = result;
         if (result.finished) this.service.openSnackBar('Period was started');
         else this.service.openSnackBar('Period was ended');
       },
